@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function WalletScreen() {
   return (
+<ScrollView className='flex-1'>
+
+<SafeAreaView className="flex-1 bg-white">
+
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
-      <ScrollView className="flex-1">
         <View className="p-6">
           <Text className="text-3xl font-bold mb-2">Wallet</Text>
           <Text className="text-gray-600 mb-8">
@@ -62,7 +65,11 @@ export default function WalletScreen() {
             </View>
           </View>
         </View>
-      </ScrollView>
+
     </View>
+    </SafeAreaView>
+    </ScrollView>
+
   );
 }
+

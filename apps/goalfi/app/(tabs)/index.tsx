@@ -1,17 +1,22 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
+  const router = useRouter();
   return (
-    <SafeAreaView className="flex-1 bg-white">
-
-    <View className="flex-1 bg-white">
-      <StatusBar style="dark" />
+    
       <ScrollView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
+    <View className="flex-1 bg-white">
+
+      <Button title="auth" onPress={() => router.replace('/(auth)/onboarding')} />
+      
+      <StatusBar style="dark" />
         <View className="p-6">
-          <Text className="text-3xl font-bold mb-2">Welcome to Goalfi</Text>
+          <Text className="text-3xl font-bold mb-2">Welcome to Goalfi!</Text>
           <Text className="text-gray-600 mb-8">
             Start setting and achieving your goals today
           </Text>
@@ -45,9 +50,8 @@ export default function HomeScreen() {
             </View>
           </View>
         </View>
-      </ScrollView>
-    </View>
+        </View>
     </SafeAreaView>
-
+      </ScrollView>
   );
 }

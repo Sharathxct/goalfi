@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 
 export default function NameScreen() {
   const [name, setName] = useState('');
@@ -14,8 +13,7 @@ export default function NameScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white p-6">
-      <StatusBar style="dark" />
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-center">
         <Text className="text-3xl font-bold mb-2">What's your name?</Text>
         <Text className="text-gray-600 mb-8">
@@ -42,6 +40,6 @@ export default function NameScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 } 

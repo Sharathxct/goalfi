@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function ProfileScreen() {
   return (
+    <ScrollView className='flex-1'>
+
+    <SafeAreaView className="flex-1 bg-white">
+
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
-      <ScrollView className="flex-1">
         <View className="p-6">
           <View className="items-center mb-8">
             <View className="w-24 h-24 rounded-full bg-gray-200 mb-4 items-center justify-center">
@@ -58,7 +61,9 @@ export default function ProfileScreen() {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
     </View>
+    </SafeAreaView>
+    </ScrollView>
+
   );
 }

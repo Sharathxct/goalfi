@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 
 const slides = [
   {
@@ -37,8 +36,7 @@ export default function Onboarding() {
   };
 
   return (
-    <View className="flex-1 bg-white">
-      <StatusBar style="dark" />
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-center items-center px-4">
         {/* <Image
           source={slides[currentSlide].image}
@@ -72,6 +70,6 @@ export default function Onboarding() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 } 

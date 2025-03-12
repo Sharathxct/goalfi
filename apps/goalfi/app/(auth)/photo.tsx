@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function PhotoScreen() {
@@ -26,8 +25,7 @@ export default function PhotoScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white p-6">
-      <StatusBar style="dark" />
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-center items-center">
         <Text className="text-3xl font-bold mb-2">Add a photo</Text>
         <Text className="text-gray-600 mb-8 text-center">
@@ -56,6 +54,6 @@ export default function PhotoScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 } 
