@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import {PrivyProvider} from '@privy-io/expo';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,13 +29,19 @@ export default function RootLayout() {
   }
 
   return (
+    <PrivyProvider
+      // Render the PrivyProvider with your app ID and app client ID
+      appId={'cm83cua1o00jz7u2d8tkzmsqu'}
+      clientId={'client-WY5hqT4XnBnZmk5uZzMDAv7VjLDac9sJLFPDDU74ryka2'}
+    >
     <ThemeProvider value={DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
-      </Stack>
+        </Stack>
         <StatusBar style="auto" />
     </ThemeProvider>
+    </PrivyProvider>
   );
 }

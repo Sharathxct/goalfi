@@ -31,7 +31,7 @@ export default function Onboarding() {
     if (currentSlide < slides.length - 1) {
       setCurrentSlide(currentSlide + 1);
     } else {
-      router.push('/email');
+      router.replace('/email');
     }
   };
 

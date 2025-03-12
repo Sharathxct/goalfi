@@ -1,46 +1,37 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { router, useRouter } from 'expo-router';
+import {useLoginWithEmail} from '@privy-io/expo';
 
 export default function EmailScreen() {
   const [email, setEmail] = useState('');
-  const router = useRouter();
 
-  const handleContinue = () => {
-    if (email.trim()) {
-      router.push('/otp');
+  const {sendCode} = useLoginWithEmail();
+
+  async function handleSendCode() {
+    console.log('Sending code to', email);
+    try {
+      const result = await sendCode({email});
+      if ( result.success) {
+        console.log('Code sent to', email);
+        router.push('/otp');
+      } else {
+        console.error('Error sending code', result);
+      }
+    } catch (error) {
+      console.error('Error sending code', error);
     }
-  };
+  }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 justify-center">
-        <Text className="text-3xl font-bold mb-2">What's your email?</Text>
-        <Text className="text-gray-600 mb-8">
-          We'll use this to keep you updated on your goals
-        </Text>
-        
-        <TextInput
-          className="bg-gray-100 rounded-lg px-4 py-3 mb-6"
-          placeholder="Enter your email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoComplete="email"
-        />
+    <View className="flex-1 bg-white p-6">
+    <Text className="text-2xl font-bold mb-4">Login to access</Text>
 
-        <TouchableOpacity
-          onPress={handleContinue}
-          className={`rounded-full py-4 ${
-            email.trim() ? 'bg-blue-500' : 'bg-gray-300'
-          }`}
-        >
-          <Text className="text-white text-center text-lg font-semibold">
-            Continue
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+    <TextInput value={email} onChangeText={setEmail} placeholder="Email" inputMode="email" className="border border-gray-300 rounded-md p-2" />
+
+    <TouchableOpacity onPress={handleSendCode} className="bg-blue-500 p-2 rounded-md w-full">
+      <Text>Send Code</Text>
+    </TouchableOpacity>
+  </View> 
   );
-} 
+}
