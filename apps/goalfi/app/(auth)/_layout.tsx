@@ -1,6 +1,5 @@
 import { Stack } from 'expo-router';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
 
 export default function AuthLayout() {
@@ -8,7 +7,6 @@ export default function AuthLayout() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="onboarding" options={{ headerShown: false }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -18,7 +16,6 @@ export default function AuthLayout() {
           <Stack.Screen name="name" options={{ headerShown: false }} />
           <Stack.Screen name="photo" options={{ headerShown: false }} />
         </Stack>
-      </ThemeProvider>
     </SafeAreaView>
   );
 } 
