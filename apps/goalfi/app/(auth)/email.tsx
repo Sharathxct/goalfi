@@ -1,37 +1,80 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
-import { router, useRouter } from 'expo-router';
-import {useLoginWithEmail} from '@privy-io/expo';
+import { View, Keyboard } from 'react-native';
+import { router } from 'expo-router';
+import { useLoginWithEmail } from '@privy-io/expo';
+import { Container, Header, Input, Button } from '../../components/auth';
 
 export default function EmailScreen() {
   const [email, setEmail] = useState('');
-
-  const {sendCode} = useLoginWithEmail();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { sendCode } = useLoginWithEmail();
 
   async function handleSendCode() {
-    console.log('Sending code to', email);
+    if (!email.trim()) {
+      setError('Please enter your email address');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    setError('');
+    setLoading(true);
+    Keyboard.dismiss();
+
     try {
-      const result = await sendCode({email});
-      if ( result.success) {
+      const result = await sendCode({ email });
+      if (result.success) {
         console.log('Code sent to', email);
         router.push('/otp');
       } else {
+        setError('Failed to send verification code. Please try again.');
         console.error('Error sending code', result);
       }
     } catch (error) {
+      setError('An error occurred. Please try again.');
       console.error('Error sending code', error);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <View className="flex-1 bg-white p-6">
-    <Text className="text-2xl font-bold mb-4">Login to access</Text>
-
-    <TextInput value={email} onChangeText={setEmail} placeholder="Email" inputMode="email" className="border border-gray-300 rounded-md p-2" />
-
-    <TouchableOpacity onPress={handleSendCode} className="bg-blue-500 p-2 rounded-md w-full">
-      <Text>Send Code</Text>
-    </TouchableOpacity>
-  </View> 
+    <Container>
+      <Header 
+        title="What's your email?"
+        showBackButton={false}
+      />
+      
+      <View style={{ flex: 1 }}>
+        <Input
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+            if (error) setError('');
+          }}
+          placeholder="Email"
+          inputMode="email"
+          autoCapitalize="none"
+          autoComplete="email"
+          keyboardType="email-address"
+          error={error}
+          helper="Enter your email to receive a verification code."
+        />
+      </View>
+      
+      <Button
+        title="Continue"
+        onPress={handleSendCode}
+        loading={loading}
+        fullWidth
+        size="lg"
+      />
+    </Container>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { router } from 'expo-router';
+import { Button } from '../../components/auth';
+
+const { width } = Dimensions.get('window');
 
 const slides = [
   {
@@ -25,7 +28,6 @@ const slides = [
 
 export default function Onboarding() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useRouter();
 
   const goToNextSlide = () => {
     if (currentSlide < slides.length - 1) {
@@ -35,41 +37,106 @@ export default function Onboarding() {
     }
   };
 
+  const isLastSlide = currentSlide === slides.length - 1;
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 justify-center items-center px-4">
-        {/* <Image
-          source={slides[currentSlide].image}
-          className="w-72 h-72 mb-8"
-          resizeMode="contain"
-        /> */}
-        <Text className="text-3xl font-bold text-center mb-4">
+    <View style={styles.container}>
+      <View style={styles.content}>
+        {/* Placeholder for image */}
+        <View style={styles.imageContainer}>
+          {/* <Image
+            source={slides[currentSlide].image}
+            style={styles.image}
+            resizeMode="contain"
+          /> */}
+        </View>
+        
+        <Text style={styles.title}>
           {slides[currentSlide].title}
         </Text>
-        <Text className="text-lg text-gray-600 text-center mb-8 px-6">
+        
+        <Text style={styles.description}>
           {slides[currentSlide].description}
         </Text>
         
-        <View className="flex-row justify-center space-x-2 mb-8">
+        <View style={styles.dotsContainer}>
           {slides.map((_, index) => (
             <View
               key={index}
-              className={`w-2 h-2 rounded-full ${
-                index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-              }`}
+              style={[
+                styles.dot,
+                index === currentSlide && styles.activeDot
+              ]}
             />
           ))}
         </View>
-
-        <TouchableOpacity
-          onPress={goToNextSlide}
-          className="bg-blue-500 rounded-full px-8 py-4 w-64"
-        >
-          <Text className="text-white text-center text-lg font-semibold">
-            {currentSlide === slides.length - 1 ? "Get Started" : "Next"}
-          </Text>
-        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+      
+      <Button
+        title={isLastSlide ? "Get Started" : "Next"}
+        onPress={goToNextSlide}
+        variant="primary"
+        size="lg"
+        fullWidth
+      />
+    </View>
   );
-} 
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    padding: 20,
+    paddingBottom: 40,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageContainer: {
+    width: width * 0.7,
+    height: width * 0.7,
+    backgroundColor: '#F3F4F6',
+    borderRadius: 20,
+    marginBottom: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: '80%',
+    height: '80%',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 16,
+    color: '#1F2937',
+  },
+  description: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 40,
+    color: '#6B7280',
+    paddingHorizontal: 20,
+    lineHeight: 24,
+  },
+  dotsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 40,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#E5E7EB',
+    marginHorizontal: 4,
+  },
+  activeDot: {
+    backgroundColor: '#FF7D26',
+    width: 20,
+  },
+}); 

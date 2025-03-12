@@ -6,7 +6,6 @@ export default function AuthLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
         <Stack>
           <Stack.Screen name="onboarding" options={{ headerShown: false }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -16,6 +15,5 @@ export default function AuthLayout() {
           <Stack.Screen name="name" options={{ headerShown: false }} />
           <Stack.Screen name="photo" options={{ headerShown: false }} />
         </Stack>
-    </SafeAreaView>
   );
 } 
