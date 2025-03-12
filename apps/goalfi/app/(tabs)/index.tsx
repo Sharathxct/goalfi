@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function HomeScreen() {
   return (
+    <SafeAreaView className="flex-1 bg-white">
+
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
       <ScrollView className="flex-1">
@@ -45,5 +47,7 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
     </View>
+    </SafeAreaView>
+
   );
 }
