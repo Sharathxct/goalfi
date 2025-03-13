@@ -33,6 +33,13 @@ export default function RootLayout() {
       // Render the PrivyProvider with your app ID and app client ID
       appId={'cm83cua1o00jz7u2d8tkzmsqu'}
       clientId={'client-WY5hqT4XnBnZmk5uZzMDAv7VjLDac9sJLFPDDU74ryka2'}
+      config={{
+        embedded: { 
+          solana: { 
+            createOnLogin: 'users-without-wallets', // defaults to 'off'
+          }, 
+        }, 
+      }}
     >
     <ThemeProvider value={DefaultTheme}>
         <Stack>

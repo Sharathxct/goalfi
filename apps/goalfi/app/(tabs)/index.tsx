@@ -2,38 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
-import { SplashScreen, useRouter } from 'expo-router';
-import { verifyInstallation } from 'nativewind';
-
-// Demo authentication function
-// const demoAuth = () => {
-//   // Simulate an authentication process
-//   console.log("User authenticated (demo)");
-//   // Here you can add logic to set user state or navigate to the onboarding page
-// };
+import useIsLoadingStore from '@/zustand/useIsLoading.store';
 
 export default function HomeScreen() {
-  verifyInstallation();
-  // const router = useRouter();
-  // const [isLoading, setIsLoading] = useState(true); // State to manage loading
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     demoAuth(); // Call demo auth
-  //     setIsLoading(false); // Set loading to false after delay
-  //     router.replace('/(auth)/onboarding'); // Redirect to email screen
-  //   }, 2000); // Show splash screen for 2 seconds
-
-  //   return () => clearTimeout(timer); // Cleanup timer on unmount
-  // }, []); // Empty dependency array to run once on mount
-
-  // if (isLoading) {
-  //   return (
-  //     <View className="flex-1 justify-center items-center">
-  //       <ActivityIndicator size="large" color="#3B82F6" />
-  //     </View>
-  //   );
-  // }
+  // set isLoading to true
+  function setIsLoading(isLoading: boolean) {
+    useIsLoadingStore.setState({ isLoading });
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -73,6 +48,16 @@ export default function HomeScreen() {
               </View>
             </View>
           </View>
+
+          <View className="w-full mt-20">
+            <TouchableOpacity
+              className="bg-blue-500 rounded-full py-3 px-6 flex-row items-center justify-center"
+              onPress={() => setIsLoading(true)}
+            >
+              <Text className="text-white font-semibold ml-2">Test Loading</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
       </View>
     </SafeAreaView>

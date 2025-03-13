@@ -1,8 +1,22 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
+import FullScreenLoader from '@/components/common/FullScreenLoader';
+import useIsLoadingStore from '@/zustand/useIsLoading.store';
+import {AuthBoundary} from '@privy-io/expo';
 
 export default function TabsLayout() {
+  const isLoading = useIsLoadingStore((state) => state.isLoading);
+
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
+    <AuthBoundary
+      loading={<FullScreenLoader />}
+      error={(error) => <FullScreenLoader error={error.message} />}
+      unauthenticated={<Redirect href="/(auth)/email" />}
+    >
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#3B82F6',
@@ -42,5 +56,6 @@ export default function TabsLayout() {
         }}
       />
     </Tabs>
+    </AuthBoundary>
   );
 }
