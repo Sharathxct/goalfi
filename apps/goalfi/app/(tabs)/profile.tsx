@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
 import {usePrivy} from '@privy-io/expo';
+import { Pedometer } from 'expo-sensors';
 
 export default function ProfileScreen() {
   const {logout} = usePrivy();
+  const [isPedometerAvailable, setIsPedometerAvailable] = useState('checking');
+  const [pastStepCount, setPastStepCount] = useState(0);
+  const [currentStepCount, setCurrentStepCount] = useState(0);
 
-  return (
+  const subscribe = async () => {
+    const isAvailable = await Pedometer.isAvailableAsync();
+    setIsPedometerAvailable(String(isAvailable));
+
+    if (isAvailable) {
+      const end = new Date();
+      const start = new Date();
+      start.setDate(end.getDate() - 1);
+
+      const pastStepCountResult = await Pedometer.getStepCountAsync(start, end);
+      if (pastStepCountResult) {
+        setPastStepCount(pastStepCountResult.steps);
+      }
+
+      return Pedometer.watchStepCount(result => {
+        setCurrentStepCount(result.steps);
+      });
+    }
+  };
+
+  useEffect(() => {
+    const subscription = subscribe();
+    subscription.then(sub => {
+      return () => sub && sub.remove();
+    });
+  }, []);
+  return(
     <ScrollView className='flex-1'>
 
     <SafeAreaView className="flex-1 bg-white">
@@ -63,6 +93,11 @@ export default function ProfileScreen() {
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
           </View>
+        </View>
+        <View className="p-6">
+          <Text className="text-lg font-semibold mb-4">Pedometer availability { isPedometerAvailable }</Text>
+          <Text className="text-gray-600">Current Step Count: {currentStepCount}</Text>
+          <Text className="text-gray-600">Past Step Count: {pastStepCount}</Text>
         </View>
     </View>
     </SafeAreaView>
