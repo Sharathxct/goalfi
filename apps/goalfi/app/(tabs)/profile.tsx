@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
+import {usePrivy} from '@privy-io/expo';
 
 export default function ProfileScreen() {
+  const {logout} = usePrivy();
+
   return (
     <ScrollView className='flex-1'>
 
@@ -54,7 +57,7 @@ export default function ProfileScreen() {
               <Text className="flex-1 text-gray-800">Help & Support</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row items-center p-4">
+            <TouchableOpacity className="flex-row items-center p-4" onPress={logout}>
               <FontAwesome name="sign-out" size={20} color="#EF4444" className="w-8" />
               <Text className="flex-1 text-red-500">Sign Out</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
