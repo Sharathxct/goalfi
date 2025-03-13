@@ -6,34 +6,34 @@ import { SplashScreen, useRouter } from 'expo-router';
 import { verifyInstallation } from 'nativewind';
 
 // Demo authentication function
-const demoAuth = () => {
-  // Simulate an authentication process
-  console.log("User authenticated (demo)");
-  // Here you can add logic to set user state or navigate to the onboarding page
-};
+// const demoAuth = () => {
+//   // Simulate an authentication process
+//   console.log("User authenticated (demo)");
+//   // Here you can add logic to set user state or navigate to the onboarding page
+// };
 
 export default function HomeScreen() {
   verifyInstallation();
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true); // State to manage loading
+  // const router = useRouter();
+  // const [isLoading, setIsLoading] = useState(true); // State to manage loading
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      demoAuth(); // Call demo auth
-      setIsLoading(false); // Set loading to false after delay
-      router.replace('/(auth)/onboarding'); // Redirect to email screen
-    }, 2000); // Show splash screen for 2 seconds
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     demoAuth(); // Call demo auth
+  //     setIsLoading(false); // Set loading to false after delay
+  //     router.replace('/(auth)/onboarding'); // Redirect to email screen
+  //   }, 2000); // Show splash screen for 2 seconds
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
-  }, []); // Empty dependency array to run once on mount
+  //   return () => clearTimeout(timer); // Cleanup timer on unmount
+  // }, []); // Empty dependency array to run once on mount
 
-  if (isLoading) {
-    return (
-      <View className="flex-1 justify-center items-center">
-        <ActivityIndicator size="large" color="#3B82F6" />
-      </View>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <View className="flex-1 justify-center items-center">
+  //       <ActivityIndicator size="large" color="#3B82F6" />
+  //     </View>
+  //   );
+  // }
 
   return (
     <SafeAreaView className="flex-1 bg-white">

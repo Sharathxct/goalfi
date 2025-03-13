@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { router } from 'expo-router';
+import { router, useRouter, useLocalSearchParams } from 'expo-router';
 import { useLoginWithEmail } from '@privy-io/expo';
 import { Container, Header, OTPInput, Button } from '../../components/auth';
 
 export default function OTPScreen() {
+  const { email } = useLocalSearchParams();
+  const emailString = Array.isArray(email) ? email[0] : email;
+  console.log('Email from params:', emailString);
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,8 +23,8 @@ export default function OTPScreen() {
     setError('');
 
     try {
-      console.log('Logging in with code', code);
-      const result = await loginWithCode({ code, email: 'sharathxc@gmail.com' });
+      console.log('Logging in with code and email', code, emailString);
+      const result = await loginWithCode({ code, email: emailString });
       
       if (result) {
         console.log('Logged in successfully');
@@ -39,7 +42,7 @@ export default function OTPScreen() {
   }
 
   return (
-    <Container>
+    <Container scrollable={false}>
       <Header 
         title="Verification"
         subtitle="Enter the 6-digit code sent to your email"

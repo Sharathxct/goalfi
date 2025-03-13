@@ -31,7 +31,7 @@ export default function EmailScreen() {
       const result = await sendCode({ email });
       if (result.success) {
         console.log('Code sent to', email);
-        router.push('/otp');
+        router.push(`/otp?email=${encodeURIComponent(email)}`);
       } else {
         setError('Failed to send verification code. Please try again.');
         console.error('Error sending code', result);
@@ -45,7 +45,7 @@ export default function EmailScreen() {
   }
 
   return (
-    <Container>
+    <Container scrollable={false}>
       <Header 
         title="What's your email?"
         showBackButton={false}
