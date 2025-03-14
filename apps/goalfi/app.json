@@ -1,4 +1,7 @@
 {
   "name": "Goalfi",
-  "displayName": "Goalfi"
+  "displayName": "Goalfi",
+  "plugins": [
+    "expo-secure-store"
+  ]
 }
