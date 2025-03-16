@@ -16,6 +16,7 @@ import OtpScreen from '../screens/auth/otp';
 import Home from "../screens/Home";
 import ProfileScreen from '../screens/Profile/index';
 import WalletScreen from '../screens/Wallet/index';
+import TestScreen from '../screens/test';
 
 // Define the type for our root stack param list
 export type RootStackParamList = {
@@ -35,6 +36,7 @@ export type MainTabParamList = {
   Home: undefined;
   Wallet: undefined;
   Profile: undefined;
+  Test: undefined;
 };
 
 // Create the navigators
@@ -118,6 +120,15 @@ const MainNavigator = () => {
       <Tab.Screen 
         name="Profile" 
         component={ProfileScreen} 
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="user" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Test"
+        component={TestScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome name="user" size={24} color={color} />
