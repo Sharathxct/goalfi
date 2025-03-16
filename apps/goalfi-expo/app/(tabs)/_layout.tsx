@@ -55,6 +55,15 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="test"
+        options={{
+          title: 'Test',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="question-circle" size={24} color={color} />
+          ),
+        }}
+      />
     </Tabs>
     </AuthBoundary>
   );
