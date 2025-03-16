@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome } from '@expo/vector-icons';
 import {usePrivy} from '@privy-io/expo';
@@ -38,66 +38,66 @@ export default function ProfileScreen() {
     });
   }, []);
   return(
-    <ScrollView className='flex-1'>
+    <ScrollView style={styles.flexContainer}>
 
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView style={styles.container}>
 
-    <View className="flex-1 bg-white">
+    <View style={styles.container}>
       <StatusBar style="dark" />
-        <View className="p-6">
-          <View className="items-center mb-8">
-            <View className="w-24 h-24 rounded-full bg-gray-200 mb-4 items-center justify-center">
+        <View style={styles.paddingContainer}>
+          <View style={styles.centeredContainer}>
+            <View style={styles.avatarContainer}>
               <FontAwesome name="user" size={40} color="#9CA3AF" />
             </View>
-            <Text className="text-2xl font-bold mb-1">John Doe</Text>
-            <Text className="text-gray-600">john@example.com</Text>
+            <Text style={styles.userName}>John Doe</Text>
+            <Text style={styles.userEmail}>john@example.com</Text>
           </View>
 
-          <View className="bg-blue-50 rounded-xl p-6 mb-8">
-            <Text className="text-lg font-semibold mb-4">Statistics</Text>
-            <View className="flex-row justify-between">
-              <View className="items-center">
-                <Text className="text-2xl font-bold text-blue-500">$0</Text>
-                <Text className="text-gray-600">Total Staked</Text>
+          <View style={styles.statisticsContainer}>
+            <Text style={styles.statisticsTitle}>Statistics</Text>
+            <View style={styles.statsRow}>
+              <View style={styles.statsItem}>
+                <Text style={styles.stakedAmount}>$0</Text>
+                <Text style={styles.statsLabel}>Total Staked</Text>
               </View>
-              <View className="items-center">
-                <Text className="text-2xl font-bold text-green-500">0%</Text>
-                <Text className="text-gray-600">Success Rate</Text>
+              <View style={styles.statsItem}>
+                <Text style={styles.successRate}>0%</Text>
+                <Text style={styles.statsLabel}>Success Rate</Text>
               </View>
-              <View className="items-center">
-                <Text className="text-2xl font-bold text-purple-500">0</Text>
-                <Text className="text-gray-600">Goals Set</Text>
+              <View style={styles.statsItem}>
+                <Text style={styles.goalsSet}>0</Text>
+                <Text style={styles.statsLabel}>Goals Set</Text>
               </View>
             </View>
           </View>
 
-          <View className="bg-gray-50 rounded-xl">
-            <TouchableOpacity className="flex-row items-center p-4 border-b border-gray-200">
-              <FontAwesome name="bell" size={20} color="#4B5563" className="w-8" />
-              <Text className="flex-1 text-gray-800">Notifications</Text>
+          <View style={styles.optionsContainer}>
+            <TouchableOpacity style={styles.optionItem}>
+              <FontAwesome name="bell" size={20} color="#4B5563" style={styles.icon} />
+              <Text style={styles.optionText}>Notifications</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row items-center p-4 border-b border-gray-200">
-              <FontAwesome name="lock" size={20} color="#4B5563" className="w-8" />
-              <Text className="flex-1 text-gray-800">Privacy</Text>
+            <TouchableOpacity style={styles.optionItem}>
+              <FontAwesome name="lock" size={20} color="#4B5563" style={styles.icon} />
+              <Text style={styles.optionText}>Privacy</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row items-center p-4 border-b border-gray-200">
-              <FontAwesome name="question-circle" size={20} color="#4B5563" className="w-8" />
-              <Text className="flex-1 text-gray-800">Help & Support</Text>
+            <TouchableOpacity style={styles.optionItem}>
+              <FontAwesome name="question-circle" size={20} color="#4B5563" style={styles.icon} />
+              <Text style={styles.optionText}>Help & Support</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row items-center p-4" onPress={logout}>
-              <FontAwesome name="sign-out" size={20} color="#EF4444" className="w-8" />
-              <Text className="flex-1 text-red-500">Sign Out</Text>
+            <TouchableOpacity style={styles.signOutItem} onPress={logout}>
+              <FontAwesome name="sign-out" size={20} color="#EF4444" style={styles.icon} />
+              <Text style={styles.signOutText}>Sign Out</Text>
               <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
             </TouchableOpacity>
           </View>
         </View>
-        <View className="p-6">
-          <Text className="text-lg font-semibold mb-4">Pedometer availability { isPedometerAvailable }</Text>
-          <Text className="text-gray-600">Current Step Count: {currentStepCount}</Text>
-          <Text className="text-gray-600">Past Step Count: {pastStepCount}</Text>
+        <View style={styles.paddingContainer}>
+          <Text style={styles.pedometerTitle}>Pedometer availability { isPedometerAvailable }</Text>
+          <Text style={styles.pedometerText}>Current Step Count: {currentStepCount}</Text>
+          <Text style={styles.pedometerText}>Past Step Count: {pastStepCount}</Text>
         </View>
     </View>
     </SafeAreaView>
@@ -105,3 +105,108 @@ export default function ProfileScreen() {
 
   );
 }
+
+const styles = StyleSheet.create({
+  flexContainer: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  paddingContainer: {
+    padding: 24,
+  },
+  centeredContainer: {
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  avatarContainer: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    backgroundColor: '#E5E7EB',
+    marginBottom: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  userName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  userEmail: {
+    color: '#9CA3AF',
+  },
+  statisticsContainer: {
+    backgroundColor: '#ebf8ff',
+    borderRadius: 16,
+    padding: 24,
+    marginBottom: 32,
+  },
+  statisticsTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statsItem: {
+    alignItems: 'center',
+  },
+  stakedAmount: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#3b82f6',
+  },
+  successRate: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#10b981',
+  },
+  goalsSet: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#8b5cf6',
+  },
+  statsLabel: {
+    color: '#9CA3AF',
+  },
+  optionsContainer: {
+    backgroundColor: '#f9fafb',
+    borderRadius: 16,
+  },
+  optionItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+  },
+  icon: {
+    width: 32,
+  },
+  optionText: {
+    flex: 1,
+    color: '#1F2937',
+  },
+  signOutItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+  },
+  signOutText: {
+    flex: 1,
+    color: '#EF4444',
+  },
+  pedometerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+  },
+  pedometerText: {
+    color: '#9CA3AF',
+  },
+});

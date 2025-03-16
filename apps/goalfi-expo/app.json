@@ -16,7 +16,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "fun.sharath.goalfi"
     },
     "web": {
       "bundler": "metro",
@@ -34,7 +35,8 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-health-kit"
     ],
     "experiments": {
       "typedRoutes": true

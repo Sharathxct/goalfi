@@ -49,6 +49,10 @@
     <string>Allow $(PRODUCT_NAME) to access your camera</string>
     <key>NSFaceIDUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your Face ID biometric data.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>This app requires access to Apple Health data to export your health and fitness information.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>This app requires write access to Apple Health to save your health and fitness information.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your microphone</string>
     <key>NSMotionUsageDescription</key>

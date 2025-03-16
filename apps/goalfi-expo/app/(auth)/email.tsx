@@ -51,7 +51,7 @@ export default function EmailScreen() {
         showBackButton={false}
       />
       
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }} >
         <Input
           value={email}
           onChangeText={(text) => {
