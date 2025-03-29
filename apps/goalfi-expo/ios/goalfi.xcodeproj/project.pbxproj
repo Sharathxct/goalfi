@@ -372,7 +372,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = fun.sharath.goalfi;
-				PRODUCT_NAME = "goalfi";
+				PRODUCT_NAME = goalfi;
 				SWIFT_OBJC_BRIDGING_HEADER = "goalfi/goalfi-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -400,7 +400,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = fun.sharath.goalfi;
-				PRODUCT_NAME = "goalfi";
+				PRODUCT_NAME = goalfi;
 				SWIFT_OBJC_BRIDGING_HEADER = "goalfi/goalfi-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,7 +464,7 @@
 					"$(inherited)",
 					" ",
 				);
-				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/.pnpm/react-native@0.76.7_@babel+core@7.26.9_@babel+preset-env@7.26.9_@babel+core@7.26.9__@re_c30779eb65da9d794ffe0f634a469e79/node_modules/react-native";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				USE_HERMES = true;
@@ -519,7 +519,7 @@
 					"$(inherited)",
 					" ",
 				);
-				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/.pnpm/react-native@0.76.7_@babel+core@7.26.9_@babel+preset-env@7.26.9_@babel+core@7.26.9__@re_c30779eb65da9d794ffe0f634a469e79/node_modules/react-native";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;

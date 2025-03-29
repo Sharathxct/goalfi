@@ -5,8 +5,10 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
-    }
+      ],
+      "expo-health-kit": ["node_modules/expo-health-kit"]
+    },
+    "baseUrl": "."
   },
   "include": [
     "**/*.ts",

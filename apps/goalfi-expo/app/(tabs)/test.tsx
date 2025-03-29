@@ -5,7 +5,7 @@ import { View, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-na
 
 export default function TestScreen() {
    
-  return(
+    return(
         <SafeAreaView className="flex-1 bg-white">
             <Text>Test</Text>
         </SafeAreaView>
